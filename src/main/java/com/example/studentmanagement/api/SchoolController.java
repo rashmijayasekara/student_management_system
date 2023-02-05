@@ -10,7 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/school")
 public class SchoolController {
-    private SchoolService schoolService;
+    private final SchoolService schoolService;
 
     public SchoolController(SchoolService schoolService) {
         this.schoolService = schoolService;
@@ -22,18 +22,30 @@ public class SchoolController {
        return schoolService.createNewSchool(schoolDTO);
 
     }
-    public void updateSchoolDetails(){
+
+
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PatchMapping(value = "/{schoolId}",consumes = "application/json")
+    public void updateSchoolDetails(@RequestBody SchoolDTO schoolDTO){
+        schoolService.updateSchoolDetails(schoolDTO);
 
     }
-    public void deleteTask(){
 
-    }
-    public SchoolDTO getSchoolDetails(){
-        return null;
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/{schoolId}")
+    public void deleteTask(@PathVariable("schoolId") int schoolId){
+        System.out.println(schoolId);
+        schoolService.deleteSchool(schoolId);
     }
 
+    @GetMapping(value = "/{schoolId}",produces = "application/json")
+    public SchoolDTO getSchoolDetails(@PathVariable("schoolId") Integer schoolId){
+      return schoolService.getSchoolDetails(schoolId);
+    }
+
+    @GetMapping(value = "/all")
     public List<SchoolDTO> getAllSchools(){
-        return null;
+        return schoolService.getAllSchools();
     }
 
 }

@@ -9,4 +9,5 @@ public interface StudentService extends SuperService {
     void updateStudentDetails(StudentDTO studentDTO);
     void deleteStudent(Long studentId);
 
+    void getStudentBySchool(Integer id);
 }

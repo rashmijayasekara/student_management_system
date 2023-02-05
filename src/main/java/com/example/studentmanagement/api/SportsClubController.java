@@ -13,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/sportsclub")
 public class SportsClubController {
-    private SportsClubService sportsClubService;
+    private final SportsClubService sportsClubService;
 
     public SportsClubController(SportsClubService sportsClubService) {
         this.sportsClubService = sportsClubService;

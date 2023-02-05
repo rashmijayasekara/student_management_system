@@ -14,15 +14,15 @@ import java.util.Set;
 @Table(name = "student")
 public class Student implements SuperEntity{
     @Id
-    @SequenceGenerator(
-            name = "student_sequence",
-            sequenceName = "student_sequence",
-            allocationSize = 1
-    )
-    @GeneratedValue(
-            strategy = GenerationType.SEQUENCE,
-            generator = "student_sequence"
-    )
+//    @SequenceGenerator(
+//            name = "student_sequence",
+//            sequenceName = "student_sequence",
+//            allocationSize = 1
+//    )
+//    @GeneratedValue(
+//            strategy = GenerationType.SEQUENCE,
+//            generator = "student_sequence"
+//    )
     private Long id;
     private String name;
     private String address;
@@ -49,7 +49,8 @@ public class Student implements SuperEntity{
         this.schoolId = schoolId;
     }
     @Autowired
-    public Student(String name, String address, int age,School schoolId) {
+    public Student(Long id,String name, String address, int age,School schoolId) {
+        this.id=id;
         this.name = name;
         this.address = address;
         this.age = age;

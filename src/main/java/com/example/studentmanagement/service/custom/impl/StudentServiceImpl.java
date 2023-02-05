@@ -62,4 +62,9 @@ public class StudentServiceImpl implements StudentService {
 //        studentRepository.delete();
         studentRepository.deleteById(studentId);
     }
+
+    @Override
+    public void getStudentBySchool(Integer id) {
+
+    }
 }

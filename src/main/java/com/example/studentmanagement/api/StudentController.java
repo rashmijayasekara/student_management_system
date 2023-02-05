@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/student")
 public class StudentController {
-    private StudentService studentService;
+    private final StudentService studentService;
 
     @Autowired
     public StudentController(StudentService studentService) {
@@ -66,8 +66,10 @@ public class StudentController {
 
 
 
-    public List<Student> findStudentsBySchool(School school){
+    @GetMapping("/school/{id}")
+    public List<Student> findStudentsBySchool(@PathVariable("id") Integer id){
 //        studentService.getStudentAccountDetails(4);
+        studentService.getStudentBySchool(id);
         return null;
     }
 

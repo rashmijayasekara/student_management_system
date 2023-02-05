@@ -7,8 +7,6 @@ import com.example.studentmanagement.entity.School;
 import com.example.studentmanagement.entity.SportsClub;
 import com.example.studentmanagement.entity.Student;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 @Component

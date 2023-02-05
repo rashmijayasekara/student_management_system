@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 @Data @AllArgsConstructor @NoArgsConstructor
 public class SportsClubDTO implements Serializable {
+
     private int id;
     private String name;
 }
