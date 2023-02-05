@@ -28,7 +28,7 @@ public class SportsClubController {
     @PostMapping(consumes ="application/json")
     public void saveSportsClub(@RequestBody SportsClubDTO sportsClubDTO){
 //        studentService.createNewStudentAccount(studentDTO);
-        System.out.println("Hi inside save student");
+        sportsClubService.createNewSportsClub(sportsClubDTO);
     }
 
     @GetMapping(value = "/find/{id}",produces = "application/json")
