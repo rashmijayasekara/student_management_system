@@ -27,7 +27,7 @@ public class SportsClubController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping(consumes ="application/json")
     public void saveSportsClub(@RequestBody SportsClubDTO sportsClubDTO){
-//        studentService.createNewStudentAccount(studentDTO);
+
         sportsClubService.createNewSportsClub(sportsClubDTO);
     }
 

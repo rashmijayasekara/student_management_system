@@ -13,4 +13,6 @@ public interface StudentService extends SuperService {
     void deleteStudent(Long studentId);
 
     List<Student> getStudentBySchool(Integer id);
+
+    List<Student> getAllStudents();
 }

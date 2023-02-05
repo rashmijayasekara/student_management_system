@@ -3,6 +3,7 @@ package com.example.studentmanagement.api;
 import com.example.studentmanagement.dto.StudentDTO;
 import com.example.studentmanagement.entity.Student;
 import com.example.studentmanagement.service.custom.StudentService;
+import com.example.studentmanagement.util.Transformer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -14,17 +15,18 @@ import java.util.List;
 @RequestMapping("/api/v1/student")
 public class StudentController {
     private final StudentService studentService;
+    private final Transformer transformer;
 
     @Autowired
-    public StudentController(StudentService studentService) {
+    public StudentController(StudentService studentService, Transformer transformer) {
         this.studentService = studentService;
+        this.transformer = transformer;
     }
 
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public void saveStudent(@RequestParam("profileImage") MultipartFile multipartFile,@RequestParam("student") Student student) {
-        System.out.println("Hi inside save student");
-//        studentService.createNewStudentAccount(studentDTO);
+        studentService.createNewStudentAccount(transformer.toStudentDTO(student));
     }
 
 
@@ -50,16 +52,14 @@ public class StudentController {
     }
 
     @GetMapping("/all")
-    public List<StudentDTO> getAllStudents() {
-        System.out.println("Inside getAll");
-        return null;
+    public List<Student> getAllStudents() {
+        return studentService.getAllStudents();
     }
 
 
     @GetMapping("/school/{id}")
     public List<Student> findStudentsBySchool(@PathVariable("id") Integer id) {
-        studentService.getStudentBySchool(id);
-        return null;
+       return studentService.getStudentBySchool(id);
     }
 
 
