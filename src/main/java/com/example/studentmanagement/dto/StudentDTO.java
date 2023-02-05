@@ -1,0 +1,23 @@
+package com.example.studentmanagement.dto;
+
+import com.example.studentmanagement.entity.School;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
+
+
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+
+public class StudentDTO implements Serializable {
+    private Long id;
+    private String name;
+    private String address;
+    private int age;
+    private byte[] profileImage;
+    private School schoolId;
+
+}
