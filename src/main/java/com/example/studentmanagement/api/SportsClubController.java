@@ -1,7 +1,6 @@
 package com.example.studentmanagement.api;
 
 import com.example.studentmanagement.dto.SportsClubDTO;
-import com.example.studentmanagement.dto.StudentDTO;
 import com.example.studentmanagement.entity.School;
 import com.example.studentmanagement.entity.SportsClub;
 import com.example.studentmanagement.service.custom.SportsClubService;
@@ -9,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/sportsclub")
@@ -32,33 +32,28 @@ public class SportsClubController {
     }
 
     @GetMapping(value = "/find/{id}",produces = "application/json")
-    public SportsClubDTO getSportsClubByID(@PathVariable("id") Integer sportsClubId){
-//        return studentService.getStudentAccountDetails(studentId);
-        System.out.println(sportsClubId);
-        return null;
+    public Optional<SportsClub> getSportsClubByID(@PathVariable("id") Integer sportsClubId){
+       return sportsClubService.getSportsClubDetails(sportsClubId);
     }
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/delete/{id}")
     public void deleteSportsClub(@PathVariable("id") Integer sportsclubId){
-        System.out.println(sportsclubId);
+        sportsClubService.deleteSportsClub(sportsclubId);
 
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PatchMapping(value = "/update/{id}",consumes = "application/json")
     public void updateSportsClubDetails(@RequestBody SportsClubDTO sportsClubDTO, @PathVariable("id") Integer sportsClubId){
-        System.out.println(sportsClubDTO.toString());
-        System.out.println(sportsClubId);
+        sportsClubService.updateSportsClubDetails(sportsClubDTO);
     }
 
     @GetMapping("/all")
     public List<SportsClubDTO> getAllSportsClubs(){
-        System.out.println("Inside getAll");
-        return null;
+        return sportsClubService.getAllSportsClubs();
     }
 
 
-    public List<School> findSchoolsBySportsClub(SportsClub sportsClub){
-        return null;
-    }
+
+
 }
