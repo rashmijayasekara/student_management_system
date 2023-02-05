@@ -1,14 +1,12 @@
 package com.example.studentmanagement.api;
 
 import com.example.studentmanagement.dto.StudentDTO;
-import com.example.studentmanagement.entity.School;
-import com.example.studentmanagement.entity.SportsClub;
 import com.example.studentmanagement.entity.Student;
 import com.example.studentmanagement.service.custom.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -23,52 +21,43 @@ public class StudentController {
     }
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping(consumes ="application/json")
-    public void saveStudent(@RequestBody StudentDTO studentDTO){
+    @PostMapping
+    public void saveStudent(@RequestParam("profileImage") MultipartFile multipartFile,@RequestParam("student") Student student) {
         System.out.println("Hi inside save student");
-
 //        studentService.createNewStudentAccount(studentDTO);
-       studentService.createNewStudentAccount(studentDTO);
     }
 
 
-    @GetMapping(value = "/find/{id}",produces = "application/json")
-    public StudentDTO getStudentByID(@PathVariable("id") Long studentId){
-//        return studentService.getStudentAccountDetails(studentId);
+    @GetMapping(value = "/find/{id}", produces = "application/json")
+    public StudentDTO getStudentByID(@PathVariable("id") Long studentId) {
         System.out.println(studentId);
         return studentService.getStudentAccountDetails(studentId);
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/delete/{id}")
-    public void deleteStudent(@PathVariable("id") Long studentId){
+    public void deleteStudent(@PathVariable("id") Long studentId) {
         System.out.println(studentId);
         studentService.deleteStudent(studentId);
-
     }
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PatchMapping(value = "/update/{id}",consumes = "application/json")
-    public void updateStudentDetails(@RequestBody StudentDTO studentDTO, @PathVariable("id") Long studentId){
+    @PatchMapping(value = "/update/{id}", consumes = "application/json")
+    public void updateStudentDetails(@RequestBody StudentDTO studentDTO, @PathVariable("id") Long studentId) {
         System.out.println(studentDTO.toString());
         System.out.println(studentId);
         studentService.updateStudentDetails(studentDTO);
     }
 
     @GetMapping("/all")
-    public List<StudentDTO> getAllStudents(){
+    public List<StudentDTO> getAllStudents() {
         System.out.println("Inside getAll");
         return null;
     }
 
 
-
-
-
-
     @GetMapping("/school/{id}")
-    public List<Student> findStudentsBySchool(@PathVariable("id") Integer id){
-//        studentService.getStudentAccountDetails(4);
+    public List<Student> findStudentsBySchool(@PathVariable("id") Integer id) {
         studentService.getStudentBySchool(id);
         return null;
     }

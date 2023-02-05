@@ -25,7 +25,7 @@ public class SchoolController {
 
 
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    @PatchMapping(value = "/{schoolId}",consumes = "application/json")
+    @PatchMapping(consumes = "application/json")
     public void updateSchoolDetails(@RequestBody SchoolDTO schoolDTO){
         schoolService.updateSchoolDetails(schoolDTO);
 
